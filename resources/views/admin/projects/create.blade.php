@@ -76,10 +76,13 @@
 
             {{-- Status --}}
             <div class="col-4">
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <input type="text" name="status" class="form-control" id="status" placeholder="Completato/In corso"  value="{{old('status', '')}}">
-                </div>
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select form-select-md" id="status" name="status">
+                    <option selected>--</option>
+                    <option value="Completato">Completato</option>
+                    <option value="In corso">In corso</option>
+                    <option value="Cancellato">Cancellato</option>
+                </select>
             </div>
 
         </div>
@@ -102,7 +105,7 @@
     <script>
 
         // Preview dell'immagine nel form per aggiungere un nuovo progetto
-        
+
         const placeholder = 'https://marcolanci.it/boolean/assets/placeholder.png';
         const input = document.getElementById('image');
         const preview = document.getElementById('preview');
