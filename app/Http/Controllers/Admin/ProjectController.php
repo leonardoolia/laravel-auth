@@ -23,7 +23,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $project = new Project(); //creiamo un progetto fittizio per unire i form dell'edit e del create
+
+        return view('admin.projects.create', compact('project'));
     }
 
     /**
