@@ -62,6 +62,11 @@
     </tbody>
 </table>
 
+{{-- Paginazione --}}
+@if($projects->hasPages())
+  {{$projects->links()}}
+@endif
+
 </section>
 
 @endsection
