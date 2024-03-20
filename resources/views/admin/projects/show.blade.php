@@ -21,8 +21,8 @@
         <p><strong>Tecnologie utilizzate:</strong> {{$project->technologies}}</p>
 
         <div>
-            <strong>Creato il:</strong> {{$project->getCreatedAt()}}    
-            <strong>Ultima modifica:</strong> {{$project->getUpdatedAt()}}
+            <strong>Creato il:</strong> {{$project->getFormattedDate('created_at')}}   {{-- Funzione per cambiare formato della data, su Project model--}} 
+            <strong>Ultima modifica:</strong> {{$project->getFormattedDate('updated_at')}}  {{-- Funzione per cambiare formato della data, su Project model--}}
         </div>
 
         <p class="mt-4"><strong>Vai al progetto: </strong><a href="{{$project->url}}">{{$project->url}}</a></p>

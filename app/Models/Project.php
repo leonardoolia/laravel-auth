@@ -12,13 +12,9 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function getCreatedAt()
+    // Funzioni per cambiare formato della data
+    public function getFormattedDate($column, $format = 'd-m-Y H:i:s')
     {
-        return Carbon::create($this->created_at)->format('d-m-Y H:i:s');
-    }
-
-    public function getUpdatedAt()
-    {
-        return Carbon::create($this->updated_at)->format('d-m-Y H:i:s');
+        return Carbon::create($this->$column)->format($format);
     }
 }
