@@ -77,11 +77,10 @@
             {{-- Status --}}
             <div class="col-4">
                 <label for="status" class="form-label">Status</label>
-                <select class="form-select form-select-md" id="status" name="status">
-                    <option selected>--</option>
-                    <option value="Completato">Completato</option>
-                    <option value="In corso">In corso</option>
-                    <option value="Cancellato">Cancellato</option>
+                <select class="form-select form-select-md" id="status" name="status">                    
+                    <option value="Completato" @if(old('status')==='Completato') selected @endif>Completato</option>
+                    <option value="In corso" @if(old('status')==='In corso') selected @endif>In corso</option>
+                    <option value="Cancellato" @if(old('status')==='Cancellato') selected @endif>Cancellato</option>
                 </select>
             </div>
 

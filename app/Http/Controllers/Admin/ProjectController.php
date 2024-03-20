@@ -33,6 +33,8 @@ class ProjectController extends Controller
     {
         $data = $request->all();
 
+        $data['status'] = $request->input('status');
+
         $project = new Project();
 
         $project->fill($data);
