@@ -21,8 +21,8 @@
         <p><strong>Tecnologie utilizzate:</strong> {{$project->technologies}}</p>
 
         <div>
-            <strong>Creato il:</strong> {{$project->created_at}}    
-            <strong>Ultima modifica:</strong> {{$project->updated_at}}
+            <strong>Creato il:</strong> {{$project->getCreatedAt()}}    
+            <strong>Ultima modifica:</strong> {{$project->getUpdatedAt()}}
         </div>
 
         <p class="mt-4"><strong>Vai al progetto: </strong><a href="{{$project->url}}">{{$project->url}}</a></p>
