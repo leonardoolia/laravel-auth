@@ -43,7 +43,7 @@
                   <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-sm btn-warning"><i class="fas fa-pencil"></i></a>
           
                   {{-- Tasto per eliminare il project --}}
-                  <form action="{{route('admin.projects.destroy', $project)}}" method="POST">
+                  <form action="{{route('admin.projects.destroy', $project)}}" method="POST" class="delete-form">
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-can"></i></button>
@@ -64,4 +64,10 @@
 
 </section>
 
+@endsection
+
+
+@section('scripts')
+  {{-- Conferma cancellazione progetto --}}
+  @vite('resources/js/delete_confirmation.js')
 @endsection
