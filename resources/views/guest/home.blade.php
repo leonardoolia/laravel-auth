@@ -7,13 +7,19 @@
 <header class="margin-bottom">
     <h1>Progetti di Leonardo</h1>
     <address>Full Stack Web Developer</address>
+
+{{-- Paginazione --}}
+@if($projects->hasPages())
+  {{$projects->links()}}
+@endif
+
 </header>
 
 <section id="guest-home">
     @forelse ($projects as $project)
         <div class="card">            
                 <div class="card-header">
-                    {{$project->title}}
+                    <strong>Tecnologie: </strong>{{$project->technologies}}
                 </div>
                 <div class="card-body">
                     <div class="row">
