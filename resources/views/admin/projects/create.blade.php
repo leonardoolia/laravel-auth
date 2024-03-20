@@ -49,7 +49,7 @@
             <div class="col-5">
                 <div class="mb-3">
                     <label for="image" class="form-label">Immagine</label>
-                    <input type="url" name="image" class="form-control" id="image" placeholder="https...">
+                    <input type="url" name="image" class="form-control" id="image" placeholder="https..." value="{{old('image', '')}}">
                 </div>
             </div>
 
