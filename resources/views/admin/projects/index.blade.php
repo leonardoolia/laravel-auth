@@ -20,7 +20,11 @@
         <th scope="col">Data di inizio</th>
         <th scope="col">Data di fine</th>
         <th scope="col">Status</th>
-        <th></th>
+        <th>
+          <div class="d-flex justify-content-end">
+            <a href="{{route('admin.projects.create')}}" class="btn btn-sm btn-success"><i class="fas fa-plus me-2"></i>Nuovo progetto</a>
+          </div>
+        </th>
       </tr>
     </thead>
     <tbody>

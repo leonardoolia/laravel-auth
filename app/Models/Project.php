@@ -12,6 +12,8 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = ['title', 'slug', 'description', 'technologies', 'url', 'image', 'start_date', 'end_date', 'status'];
+
     // Funzioni per cambiare formato della data
     public function getFormattedDate($column, $format = 'd-m-Y H:i:s')
     {
