@@ -16,32 +16,30 @@
 </header>
 
 <section id="guest-home">
-    @forelse ($projects as $project)
-        <div class="card">            
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <strong>Tecnologie: </strong>{{$project->technologies}}
-
-                    <a href="{{route('guest.projects.show', $project)}}" class="btn btn-primary">Vedi</a>
-                </div>
-                <div class="card-body">
-                    <div class="row">
+    <div class="row">
+        @forelse ($projects as $project)
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <strong>Tecnologie: </strong>{{$project->technologies}}
+                    </div>
+                    <div class="card-body">
                         @if($project->image)
-                        <div class="col-3">
-                            <img src="{{$project->image}}" class="card-img-top" alt="{{$project->title}}">
-                        </div>
+                            <img src="{{$project->image}}" class="card-img-top mb-3" alt="{{$project->title}}">
                         @endif
-
-                        <div class="col">
-                            <h5 class="card-title">{{$project->title}}</h5>
-                            <h6 class="card-title">{{$project->created_at}}</h6>
-                            <p class="card-text">{{$project->description}}</p>                            
-                        </div>
+                        <h5 class="card-title">{{$project->title}}</h5>
+                        <p><strong class="card-title">Data creazione: </strong> {{$project->created_at}}</p>
+                        {{-- <p class="card-text">{{$project->description}}</p> --}}
+                        <a href="{{route('guest.projects.show', $project)}}" class="btn btn-primary">Vedi</a>
                     </div>
                 </div>
-        </div>
-    @empty
-        <h3 class="text-center">Non ci sono progetti da mostrare</h3>        
-    @endforelse
+            </div>
+        @empty
+            <div class="col">
+                <h3 class="text-center">Non ci sono progetti da mostrare</h3>
+            </div>
+        @endforelse
+    </div>
 </section>
 
 @endsection

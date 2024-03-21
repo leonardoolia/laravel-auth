@@ -8,7 +8,7 @@
 
 
 <div class="card my-4">            
-    <div class="card-header d-flex align-items-center justify-content-between">
+    <div class="card-header d-flex align-items-center gap-2">
         <strong>Tecnologie: </strong>{{$project->technologies}}        
     </div>
     <div class="card-body">
