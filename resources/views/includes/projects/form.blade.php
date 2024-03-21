@@ -11,7 +11,7 @@
     @csrf
     <div class="row">
         {{-- Title --}}
-        <div class="col-6">
+        <div class="col-4">
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" name="title" class="form-control @error('title') is-invalid @elseif(old('title', '')) is-valid @enderror" id="title" placeholder="Titolo..." value="{{old('title', $project->title)}}" required>
@@ -27,8 +27,16 @@
             </div>
         </div>
 
+        {{--? Slug --}}
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="slug" class="form-label">Slug</label>
+                <input type="text" class="form-control" id="slug" value="{{Str::slug(old('title', $project->title))}}" disabled>                
+            </div>
+        </div>
+
         {{-- Technologies --}}
-        <div class="col-6">
+        <div class="col-4">
             <div class="mb-3">
                 <label for="technologies" class="form-label">Tecnologie utilizzate</label>
                 <input type="text" name="technologies" class="form-control @error('technologies') is-invalid @elseif(old('technologies', '')) is-valid @enderror" id="technologies" placeholder="HTML, CSS..."  value="{{old('technologies', $project->technologies)}}" required>
