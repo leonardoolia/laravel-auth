@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -33,6 +35,27 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|min:5|max:255|unique:projects',
+            'description' => 'required|string',
+            'technologies' => 'nullable|string',
+            'url' => 'nullable|url',
+            'image' => 'nullable|url',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'status' => 'required|string',
+        ], [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.min' => 'Il titolo deve essere di almeno :min caratteri',
+            'title.max' => 'Il titolo deve essere di massimo :max caratteri',
+            'title.unique' => 'Titolo già esistente',
+            'description.required' => 'La descrizione è obbligatoria',
+            'image.url' => 'L\'indirizzo inserito non è valido',
+            'status.required' => 'Lo status è obbligatorio',
+            'end_date.after' => 'La data di fine deve essere successiva alla data di inizio'
+        ]);
+
+
         $data = $request->all();
 
         $data['status'] = $request->input('status');
@@ -69,6 +92,27 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+
+        $request->validate([
+            'title' => ['required', 'string', 'min:5', 'max:255', Rule::unique('projects')->ignore($project->id)],
+            'description' => 'required|string',
+            'technologies' => 'nullable|string',
+            'url' => 'nullable|url',
+            'image' => 'nullable|url',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'status' => 'required|string',
+        ], [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.min' => 'Il titolo deve essere di almeno :min caratteri',
+            'title.max' => 'Il titolo deve essere di massimo :max caratteri',
+            'title.unique' => 'Titolo già esistente',
+            'description.required' => 'La descrizione è obbligatoria',
+            'image.url' => 'L\'indirizzo inserito non è valido',
+            'status.required' => 'Lo status è obbligatorio',
+            'end_date.after' => 'La data di fine deve essere successiva alla data di inizio'
+        ]);
+
         $data = $request->all();
 
         $data['status'] = $request->input('status');
