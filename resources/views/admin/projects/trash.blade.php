@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Progetti')
+@section('title', 'Projects')
 
 @section('content')
 
 <header class="my-4 border-bottom">
-    <h1>Progetti</h1>
+    <h1>Progetti eliminati</h1>
 </header>
 
 <section id="projects-table">
@@ -22,8 +22,9 @@
         <th scope="col">Status</th>
         <th>
           <div class="d-flex justify-content-end gap-2 align-items-center">
-            <a href="{{route('admin.projects.trash')}}" class="btn btn-secondary"><i class="fas fa-trash me-2"></i>Cestino</a>
-            <a href="{{route('admin.projects.create')}}" class="btn btn-sm btn-success"><i class="fas fa-plus me-2"></i>Nuovo progetto</a>
+            <a href="{{route('admin.projects.index')}}" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Torna indietro</a>
+            {{-- Todo --}}
+            <a href="#" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Svuota cestino</a>
           </div>
         </th>
       </tr>
@@ -41,37 +42,41 @@
             <td>
               <div class="d-flex align-items-center justify-content-end gap-2">
 
-                {{-- Tasto per il dettaglio --}}
+                {{-- Tasto per vedere il dettaglio --}}
                 <a href="{{route('admin.projects.show', $project)}}" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i>
                 </a>
                 
                   {{-- Tasto per modificare il project--}}
                   <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-sm btn-warning"><i class="fas fa-pencil"></i></a>
           
-                  {{-- Tasto per eliminare il project --}}
-                  <form action="{{route('admin.projects.destroy', $project)}}" method="POST" class="delete-form">
+                  {{-- Tasto per eliminare definitivamente il project --}}                  
+                  <form action="{{route('admin.projects.drop', $project)}}" method="POST" class="delete-form">
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-can"></i></button>
                   </form>
+
+                {{-- Tasto per ripristinare il project --}}
+                <form action="{{route('admin.projects.restore', $project)}}" method="POST" >
+                     @csrf
+                    @method('PATCH')
+                    <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-arrows-rotate"></i></button>
+                </form>
               
               </div>
             </td>
           </tr>
         @empty
           <tr>
-            <td colspan="8"> 
-                <h2>Non è possibile visualizzare i progetti</h2>
+            <td colspan="8" class="text-center"> 
+                <h2>Non ci sono progetti</h2>
             </td>
           </tr>           
         @endforelse      
     </tbody>
 </table>
 
-{{-- Paginazione --}}
-@if($projects->hasPages())
-  {{$projects->links()}}
-@endif
+
 
 </section>
 
