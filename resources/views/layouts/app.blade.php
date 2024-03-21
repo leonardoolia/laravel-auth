@@ -36,9 +36,12 @@
         {{-- Navbar --}}
         @include('includes.layouts.navbar')
         
-
+        
         <main class="container pt-2">
+            {{-- Alert --}}
             @include('includes.alerts')
+
+            {{-- Main content --}}
             @yield('content')
         </main>
     </div>

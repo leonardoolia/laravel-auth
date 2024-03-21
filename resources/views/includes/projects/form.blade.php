@@ -14,7 +14,16 @@
         <div class="col-6">
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
-                <input type="text" name="title" class="form-control" id="title" placeholder="Titolo..." value="{{old('title', $project->title)}}" required>
+                <input type="text" name="title" class="form-control @error('title') is-invalid @elseif(old('title', '')) is-valid @enderror" id="title" placeholder="Titolo..." value="{{old('title', $project->title)}}" required>
+                @error('title')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @else
+                    <div class="form-text">
+                        Inserisci il titolo del progetto
+                    </div>
+                @enderror
             </div>
         </div>
 
@@ -22,7 +31,16 @@
         <div class="col-6">
             <div class="mb-3">
                 <label for="technologies" class="form-label">Tecnologie utilizzate</label>
-                <input type="text" name="technologies" class="form-control" id="technologies" placeholder="HTML, CSS..."  value="{{old('technologies', $project->technologies)}}" required>
+                <input type="text" name="technologies" class="form-control @error('technologies') is-invalid @elseif(old('technologies', '')) is-valid @enderror" id="technologies" placeholder="HTML, CSS..."  value="{{old('technologies', $project->technologies)}}" required>
+                @error('technologies')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @else
+                    <div class="form-text">
+                        Inserisci le tecnologie utilizzate
+                    </div>
+                @enderror
             </div>
         </div>
 
@@ -30,7 +48,16 @@
         <div class="col-12">
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione del progetto</label>
-                <textarea class="form-control" name="description" id="description" rows="15">{{old('description', $project->description)}}</textarea>
+                <textarea class="form-control @error('description') is-invalid @elseif(old('description', '')) is-valid @enderror" name="description" id="description" rows="15">{{old('description', $project->description)}}</textarea>
+                @error('description')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @else
+                    <div class="form-text">
+                        Inserisci una descrizione
+                    </div>
+                @enderror
             </div>
         </div>
 
@@ -38,7 +65,16 @@
         <div class="col-6">
             <div class="mb-3">
                 <label for="url" class="form-label">Indirizzo al progetto</label>
-                <input type="url" name="url" class="form-control" id="url" placeholder="https..."  value="{{old('url', $project->url)}}">
+                <input type="url" name="url" class="form-control @error('url') is-invalid @elseif(old('url', '')) is-valid @enderror" id="url" placeholder="https..."  value="{{old('url', $project->url)}}">
+                @error('url')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @else
+                    <div class="form-text">
+                        Inserisci un url
+                    </div>
+                @enderror
             </div>
         </div>
 
@@ -46,7 +82,16 @@
         <div class="col-5">
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
-                <input type="url" name="image" class="form-control" id="image" placeholder="https..." value="{{old('image', $project->image)}}">
+                <input type="url" name="image" class="form-control @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror" id="image" placeholder="https..." value="{{old('image', $project->image)}}">
+                @error('image')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @else
+                    <div class="form-text">
+                        Inserisci un url di un'immagine
+                    </div>
+                @enderror
             </div>
         </div>
 
@@ -59,7 +104,16 @@
         <div class="col-4">
             <div class="mb-3">
                 <label for="start_date" class="form-label">Data di inizio</label>
-                <input type="date" name="start_date" class="form-control" id="start_date" placeholder="20-03-2024"  value="{{old('start_date', $project->start_date)}}">
+                <input type="date" name="start_date" class="form-control @error('start_date') is-invalid @elseif(old('start_date', '')) is-valid @enderror" id="start_date" placeholder="20-03-2024"  value="{{old('start_date', $project->start_date)}}">
+                @error('start_date')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @else
+                    <div class="form-text">
+                        Inserisci una data di inizio
+                    </div>
+                @enderror
             </div>
         </div>
 
@@ -67,18 +121,36 @@
         <div class="col-4">
             <div class="mb-3">
                 <label for="end_date" class="form-label">Data di fine</label>
-                <input type="date" name="end_date" class="form-control" id="end_date" placeholder="20-03-2024"  value="{{old('end_date', $project->end_date)}}">
+                <input type="date" name="end_date" class="form-control @error('end_date') is-invalid @elseif(old('end_date', '')) is-valid @enderror" id="end_date" placeholder="20-03-2024"  value="{{old('end_date', $project->end_date)}}">
+                @error('end_date')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @else
+                    <div class="form-text">
+                        Inserisci una data superiore a quella di inizio
+                    </div>
+                @enderror
             </div>
         </div>
 
         {{-- Status --}}
         <div class="col-4">
             <label for="status" class="form-label">Status</label>
-            <select class="form-select form-select-md" id="status" name="status">                    
+            <select class="form-select form-select-md @error('status') is-invalid @elseif(old('status', '')) is-valid @enderror" id="status" name="status">                    
                 <option value="Completato" {{ old('status', $project->status) === 'Completato' ? 'selected' : '' }}>Completato</option>
                 <option value="In corso" {{ old('status', $project->status) === 'In corso' ? 'selected' : '' }}>In corso</option>
                 <option value="Cancellato" {{ old('status', $project->status) === 'Cancellato' ? 'selected' : '' }}>Cancellato</option>
             </select>
+            @error('status')
+            <div class="invalid-feedback">
+                {{$message}}
+            </div>
+            @else
+                <div class="form-text">
+                    Seleziona uno status
+                </div>
+            @enderror
         </div>
 
     </div>
