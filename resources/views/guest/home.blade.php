@@ -30,7 +30,7 @@
                         <h5 class="card-title">{{$project->title}}</h5>
                         <p><strong class="card-title">Data creazione: </strong> {{$project->created_at}}</p>
                         {{-- <p class="card-text">{{$project->description}}</p> --}}
-                        <a href="{{route('guest.projects.show', $project)}}" class="btn btn-primary">Vedi</a>
+                        <a href="{{route('guest.projects.show', $project->slug)}}" class="btn btn-primary">Vedi</a>
                     </div>
                 </div>
             </div>
