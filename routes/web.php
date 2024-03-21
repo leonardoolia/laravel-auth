@@ -3,7 +3,8 @@
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', GuestHomeController::class)->name('guest.home');
 
+// Rotta per i guest per vedere i singoli progetti
+Route::get('/projects/{project}', [GuestProjectController::class, 'show'])->name('guest.projects.show');
+
 Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     //? Rotta admin home
     Route::get('', AdminHomeController::class)->name('home');
@@ -32,7 +36,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     // Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
     //? Registrare tutte le rotte crud:
-    Route::resource('projects', ProjectController::class);
+    Route::resource('projects', AdminProjectController::class);
 });
 
 //? Rotte profilo
