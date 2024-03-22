@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//? Rotta guest home
 Route::get('/', GuestHomeController::class)->name('guest.home');
 
 // Rotta per i guest per vedere i singoli progetti
