@@ -107,7 +107,7 @@
         <div class="col-5">
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
-                <input type="file" name="image" class="form-control @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror" id="image" placeholder="https..." value="{{old('image', $project->image)}}">
+                <input type="file" name="image" class="form-control @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror" id="image">
                 @error('image')
                 <div class="invalid-feedback">
                     {{$message}}
@@ -122,7 +122,7 @@
 
         {{-- Preview immagine --}}
         <div class="col-1">
-            <img src="{{old('image',$project->image ) 
+            <img src="{{old('image', $project->image ) 
             ? asset('storage/' . old('image', $project->image)) 
             : 'https://marcolanci.it/boolean/assets/placeholder.png'}}" alt="{{$project->title}}" id="preview" class="img-fluid">
         </div>

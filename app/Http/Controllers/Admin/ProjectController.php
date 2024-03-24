@@ -53,7 +53,7 @@ class ProjectController extends Controller
             'title.unique' => 'Titolo già esistente',
             'description.required' => 'La descrizione è obbligatoria',
             // 'image.url' => 'L\'indirizzo inserito non è valido',
-            'image.image' => 'Il file inserito non è un\immagine',
+            'image.image' => 'Il file inserito non è un\'immagine',
             'image.mimes' => 'Le estensioni accettate sono .png e .jpg',
             'status.required' => 'Lo status è obbligatorio',
             'end_date.after' => 'La data di fine deve essere successiva alla data di inizio'
@@ -103,7 +103,7 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
 
-        dd($request);
+
         $request->validate([
             'title' => ['required', 'string', 'min:5', 'max:255', Rule::unique('projects')->ignore($project->id)],
             'description' => 'required|string',
@@ -119,7 +119,7 @@ class ProjectController extends Controller
             'title.max' => 'Il titolo deve essere di massimo :max caratteri',
             'title.unique' => 'Titolo già esistente',
             'description.required' => 'La descrizione è obbligatoria',
-            'image.image' => 'Il file inserito non è un\immagine',
+            'image.image' => 'Il file inserito non è un\'immagine',
             'image.mimes' => 'Le estensioni accettate sono .png e .jpg',
             'status.required' => 'Lo status è obbligatorio',
             'end_date.after' => 'La data di fine deve essere successiva alla data di inizio'

@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
                         @if($project->image)
-                            <img src="{{$project->image}}" class="card-img-top mb-3" alt="{{$project->title}}">
+                            <img src="{{asset('storage/'. $project->image)}}" class="card-img-top mb-3" alt="{{$project->title}}">
                         @endif
                         <h5 class="card-title">{{$project->title}}</h5>
                         <p><strong class="card-title">Data creazione: </strong> {{$project->created_at}}</p>
