@@ -36,7 +36,13 @@
             <td>{{$project->title}}</td>
             <td class="text-truncate" style="max-width: 200px;">{{$project->description}}</td>
             <td>{{$project->technologies}}</td>
-            <td class="text-center">{{$project->type ? $project->type->label : '-'}}</td>
+            <td>
+              @if($project->type)
+                <span class="badge" style="background-color: {{$project->type->color}}">{{$project->type ? $project->type->label : '-'}}</span>
+              @else 
+                -
+              @endif              
+            </td>
             <td>{{$project->start_date}}</td>
             <td>{{$project->end_date}}</td>           
             <td>{{$project->status}}</td>
