@@ -19,4 +19,10 @@ class Project extends Model
     {
         return Carbon::create($this->$column)->format($format);
     }
+
+    // Funzione per mettere in relazione la tabella projects con la tabella types
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }
