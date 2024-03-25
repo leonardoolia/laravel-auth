@@ -58,7 +58,7 @@
             <select class="form-select" id="type" name="type_id">
                 <option value="">Nessuno</option>
                 @foreach ($types as $type)
-                    <option value="{{$type->id}} @if (old('type_id', $project->type?->id) == $type->id) selected @endif">{{$type->label}}</option>                 
+                    <option value="{{$type->id}}" @if (old('type_id', $project->type?->id) == $type->id) selected @endif>{{$type->label}}</option>                 
                 @endforeach
             </select>
         </div>

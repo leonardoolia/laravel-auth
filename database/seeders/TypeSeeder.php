@@ -15,7 +15,7 @@ class TypeSeeder extends Seeder
     public function run(Faker $faker): void
     {
         // Array di labels 
-        $labels = ['Frontend', 'Backend', 'Fullstack', 'UI-UX', 'DESIGN'];
+        $labels = ['Frontend', 'Backend', 'Fullstack', 'UI-UX', 'Design'];
 
         // Ciclo per girare sulle labels
         foreach ($labels as $label) {
