@@ -11,7 +11,7 @@
     @csrf
     <div class="row">
         {{-- Title --}}
-        <div class="col-4">
+        <div class="col-3">
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" name="title" class="form-control @error('title') is-invalid @elseif(old('title', '')) is-valid @enderror" id="title" placeholder="Titolo..." value="{{old('title', $project->title)}}" required>
@@ -28,7 +28,7 @@
         </div>
 
         {{--? Slug --}}
-        <div class="col-4">
+        <div class="col-3">
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
                 <input type="text" class="form-control" id="slug" value="{{Str::slug(old('title', $project->title))}}" disabled>                
@@ -36,7 +36,7 @@
         </div>
 
         {{-- Technologies --}}
-        <div class="col-4">
+        <div class="col-3">
             <div class="mb-3">
                 <label for="technologies" class="form-label">Tecnologie utilizzate</label>
                 <input type="text" name="technologies" class="form-control @error('technologies') is-invalid @elseif(old('technologies', '')) is-valid @enderror" id="technologies" placeholder="HTML, CSS..."  value="{{old('technologies', $project->technologies)}}" required>
@@ -50,6 +50,17 @@
                     </div>
                 @enderror
             </div>
+        </div>
+
+        {{-- Type --}}
+        <div class="col-3"> 
+            <label for="type" class="form-label">Tag</label>
+            <select class="form-select" id="type" name="type_id">
+                <option value="">Nessuno</option>
+                @foreach ($types as $type)
+                    <option value="{{$type->id}} @if (old('type_id', $project->type?->id) == $type->id) selected @endif">{{$type->label}}</option>                 
+                @endforeach
+            </select>
         </div>
 
         {{-- Description --}}
