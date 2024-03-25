@@ -17,6 +17,7 @@
         <th scope="col">Titolo</th>
         <th scope="col">Descrizione</th>
         <th scope="col">Tecnologie usate</th>
+        <th scope="col">Tag</th>
         <th scope="col">Data di inizio</th>
         <th scope="col">Data di fine</th>
         <th scope="col">Status</th>
@@ -35,6 +36,7 @@
             <td>{{$project->title}}</td>
             <td class="text-truncate" style="max-width: 200px;">{{$project->description}}</td>
             <td>{{$project->technologies}}</td>
+            <td class="text-center">{{$project->type? $project->type->label : '-'}}</td>
             <td>{{$project->start_date}}</td>
             <td>{{$project->end_date}}</td>           
             <td>{{$project->status}}</td>
@@ -60,7 +62,7 @@
           </tr>
         @empty
           <tr>
-            <td colspan="8"> 
+            <td colspan="9"> 
                 <h2>Non è possibile visualizzare i progetti</h2>
             </td>
           </tr>           
