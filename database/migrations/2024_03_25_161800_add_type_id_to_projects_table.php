@@ -27,7 +27,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             // Distruzione colonna "id" nella tabella projects
-            $table->dropForeign('projects_category_id_foreign');
+            $table->dropForeign('projects_type_id_foreign');
             $table->dropColumn('type_id');
         });
     }

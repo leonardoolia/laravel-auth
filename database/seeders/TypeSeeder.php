@@ -5,14 +5,14 @@ namespace Database\Seeders;
 use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Generator;
+use Faker\Generator as Faker;
 
 class TypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(Generator $faker): void
+    public function run(Faker $faker): void
     {
         // Array di labels 
         $labels = ['Frontend', 'Backend', 'Fullstack', 'UI-UX', 'DESIGN'];
@@ -24,7 +24,9 @@ class TypeSeeder extends Seeder
 
             // Riempiamo i campi
             $type->label = $label;
-            $type->color = $faker()->hexColor();
+            $type->color = $faker->hexColor();
+
+            $type->save();
         }
     }
 }
