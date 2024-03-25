@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -27,8 +28,8 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project(); //creiamo un progetto fittizio per unire i form dell'edit e del create
-
-        return view('admin.projects.create', compact('project'));
+        $types = Type::select('label', 'id')->get();
+        return view('admin.projects.create', compact('project', 'types'));
     }
 
     /**
@@ -40,6 +41,7 @@ class ProjectController extends Controller
             'title' => 'required|string|min:5|max:255|unique:projects',
             'description' => 'required|string',
             'technologies' => 'nullable|string',
+            'type_id' => 'nullable|exists:types, id',
             'url' => 'nullable|url',
             // 'image' => 'nullable|url',
             'image' => 'nullable|image|mimes:png,jpg',
@@ -52,6 +54,7 @@ class ProjectController extends Controller
             'title.max' => 'Il titolo deve essere di massimo :max caratteri',
             'title.unique' => 'Titolo già esistente',
             'description.required' => 'La descrizione è obbligatoria',
+            'type_id.exists' => 'Tag non valido',
             // 'image.url' => 'L\'indirizzo inserito non è valido',
             'image.image' => 'Il file inserito non è un\'immagine',
             'image.mimes' => 'Le estensioni accettate sono .png e .jpg',
@@ -94,7 +97,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::select('label', 'id')->get();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -108,6 +112,7 @@ class ProjectController extends Controller
             'title' => ['required', 'string', 'min:5', 'max:255', Rule::unique('projects')->ignore($project->id)],
             'description' => 'required|string',
             'technologies' => 'nullable|string',
+            'type_id' => 'nullable|exists:types, id',
             'url' => 'nullable|url',
             'image' => 'nullable|image|mimes:png,jpg',
             'start_date' => 'nullable|date',
@@ -119,6 +124,7 @@ class ProjectController extends Controller
             'title.max' => 'Il titolo deve essere di massimo :max caratteri',
             'title.unique' => 'Titolo già esistente',
             'description.required' => 'La descrizione è obbligatoria',
+            'type_id.exists' => 'Tag non valido',
             'image.image' => 'Il file inserito non è un\'immagine',
             'image.mimes' => 'Le estensioni accettate sono .png e .jpg',
             'status.required' => 'Lo status è obbligatorio',
