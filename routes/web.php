@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,8 +41,12 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     // Route::put('/projects/{project}/', [ProjectController::class, 'update'])->name('projects.update');
     // Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');   
 
-    //? Registrare tutte le rotte crud:
+    //? Registrare tutte le rotte crud del project:
     Route::resource('projects', AdminProjectController::class)->withTrashed();
+
+
+    //? Rotte crud del type, tranne quella della show
+    Route::resource('/types', TypeController::class)->except('show');
 });
 
 //? Rotte profilo
