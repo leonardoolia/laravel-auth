@@ -9,6 +9,8 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $fillable =  ['label', 'color'];
+
     // Funzione per mettere in relazione la tabella projects con la tabella types
     public function projects()
     {
